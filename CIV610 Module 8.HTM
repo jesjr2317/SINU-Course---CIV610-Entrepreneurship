@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIV506 - Solid Mechanics </title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e3a5f;
+            --secondary: #2c5282;
+            --accent: #d69e2e;
+            --bg-light: #f7fafc;
+            --text-dark: #2d3748;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+        }
+
+        .institution-bar {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.5rem 2rem;
+            font-size: 0.875rem;
+        }
+
+        .institution-bar p {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            border-bottom: 2px solid var(--accent);
+            padding: 1rem 2rem;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            background: var(--white);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent);
+        }
+
+        h3 {
+            color: var(--primary);
+            font-size: 1.25rem;
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ol, ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Flow Chart Styles */
+        .flow-chart {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .flow-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .flow-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            min-width: 150px;
+            font-weight: 600;
+        }
+
+        .flow-box.client {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        .flow-box.design {
+            background: #4299e1;
+        }
+
+        .flow-box.contractor {
+            background: #48bb78;
+        }
+
+        .flow-box.manager {
+            background: #ed8936;
+        }
+
+        .arrow {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .arrow-down {
+            transform: rotate(90deg);
+            display: block;
+            margin: 0.5rem auto;
+        }
+
+        .procurement-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .proc-card {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .proc-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .summary-box {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .summary-box h3 {
+            color: var(--accent);
+            margin-top: 0;
+        }
+
+        .summary-box ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .summary-box li {
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .summary-box li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        .reference {
+            background: var(--bg-light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+            border-top: 1px solid #ddd;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .flow-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="institution-bar">
+        <img src="https://www.sinu.edu.sb/wp-content/uploads/2020/07/SINU-LOGO-cropped.jpg" alt="SINU Logo" style="display: block; margin: 0 auto 2rem auto; max-width: 300px;">
+        <p style="text-align: center;">Solomon Islands National University | Faculty of Science and Technology | Department of Civil Engineering and Surveys</p>
+    </div>
+
+    <!-- <nav class="navbar">
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#LO">Learning Outcomes</a></li>
+                <li><a href="#intro">[Subtopic1]</a></li>
+				<li><a href="#Sub01">[subtopic2]</a></li>
+                <li><a href="#Sub02">[subtopic3] </a></li>
+                <li><a href="#Sub03">[subtopic4]</a></li>
+                <li><a href="#Sub04">[subtopic]</a></li>
+                <li><a href="#summary">Summary</a></li>
+                <li><a href="#references">References</a></li>
+            </ul>
+        </div>
+    </nav> -->
+
+    <main class="container">
+
+             
+        <h1 style="text-align: center;">Module 8 - PROBLEM IDENTIFICATION AND BUSINESS SOLUTIONS </h1>
+        <h2 style="text-align: center;">CIV610 - Entrepreneurship for Engineers <br> </h2> <br> 
+        <h3>Diploma of Civil Engineering (Road Construction)</h3><br>
+        <strong>Mr. James Elliot Samu <br> Assistant Lecturer in Civil Engineering </strong> 
+        <br><br>
+        <p>Date: 20 August 2026</p>   
+        
+        <!-- Learning Outcomes -->
+        <section id="LO">
+            <h2>Learning Outcomes</h2>
+            <p>Upon completing this lesson, you will be able to:</p>
+            <ol>
+                <li>define  specific, measurable problem statement</li>
+                <li>Analyse seperate symptoms from root causes using structured tools</li>
+                <li>Evaluate desirable, feasible, viable and sustainable approaches </li>
+                <li>Investigate evidence from people, process and data related to the problem encountered. </li>
+            </ol>
+        
+        </section>
+
+        <section>
+            <h2>Class Presentation </h2>
+            <center>
+                <iframe src="https://1drv.ms/p/c/81a1291608ad73cc/IQRJwF5vt8qRTb3a2jBa3PTfAaSY-yXnmEfsJ4AeDEr0ZYM?em=2&amp;wdAr=1.7777777777777777" width="1000" height="500" frameborder="0" title="PowerPoint Viewer">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+            </center>
+        </section>
+
+        <section>
+            <h2>Discussion and Forums </h2>
+            <p>
+                Read information from the attached file: <a href="https://fastercapital.com/content/Business-opportunity-and-problem-identification--Problem-Solving-Strategies-for-Startup-Success.html">Reading links</a> on <b>Business opportunity and problem identification: Problem Solving Strategies for Startup Success</b> and discuss the following questions: 
+                
+            </p>
+            
+                <h3>Discussion Questions</h3>
+
+                <b>Question 1: Identifying Business Opportunities</b> <br>
+
+                
+                <p>
+                    Discuss how an entrepreneur can identify a business opportunity in Solomon Islands. Identify one problem in your community that could be turned into a business opportunity and explain why people would be willing to pay for the proposed solution. 
+                </p>
+
+                <b>Question 2: Problem-Solving Strategies</b> <br>
+                
+                <p>
+                    Choose one of these strategies and explain how it could help an entrepreneur solve a business problem. Use a practical example to demonstrate how the strategy could be applied. 
+                </p>
+
+                <b>Question 3: Testing a Business Idea</b> <br>
+
+                <p>
+                    Before investing significant money in a new business, entrepreneurs need to determine whether their proposed solution meets customers' needs. <br>
+                    
+                    Imagine that your group wants to establish a small business providing construction materials in your community. Explain how you would test the business idea, collect feedback from potential customers, and determine whether the business is financially viable. 
+                </p>
+
+                <h3>Instructions for Students</h3>                    
+                    
+                <ul>
+                    <li>Discuss in class as group</li>
+                    <li>Submit your discussion individually on Moodle under <b>Forum 5</b></li>
+                </ul>
+        
+            
+        </section>
+
+        <!-- Summary -->
+        <section id="summary">
+            <h2>6. Summary </h2>
+            <div class="summary-box">
+                <h3>Key Points</h3><br>
+                <ul>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    
+                </ul>
+            </div>
+        </section>
+
+        
+
+        <section id="references">
+            <h2>7. References and Further Reading</h2>
+            <div class="reference">
+                <h3>Resources</h3><br>
+                Brook, M. (2004). <em>Estimating and Tendering for Construction Work</em> (3rd ed.). Elsevier Butterworth-Heinemann.<br>
+                El Wardani, M. A. (2004). <em>Comparing Procurement Methods for Design-Build Projects</em> (Technical Report No. 45). Pennsylvania State University, Department of Architectural Engineering.<br>
+                O'Reilly, M.P. (1999) Civil Engineering Construction Contracts, 2nd edn. London: Thomas Telford Ltd.<br>
+                Construction Contracting (2nd Edition) Available at:https://doi.org/10.21061/constructioncontracting2e<br><br>
+
+                <h3>Website for current information </h3><br>
+
+                <a href="https://www.sinu.edu.sb/">SINU Common website</a><br>
+
+            </div>
+        </section>
+
+
+    </main>
+
+    <div class="copyright">
+        <p>&copy; 2026 Solomon Islands National University | Diploma in Civil Engineering (Road Construction) | CIV604 Civil Engineering Measurement</p>
+    </div>
+
+</body>
+</html>
